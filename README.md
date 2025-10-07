@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 DevOps Assignment
 
-## Getting Started
+## 📦 Project Overview
+This project demonstrates a complete CI/CD pipeline using GitHub Actions, Docker, and Kubernetes. The application is containerized, pushed to GitHub Container Registry (GHCR), and deployed to a local Kubernetes cluster via Docker Desktop.
 
-First, run the development server:
+## 🛠️ Tech Stack
+- Node.js (or your app language)
+- Docker
+- GitHub Actions
+- GitHub Container Registry (GHCR)
+- Kubernetes (Docker Desktop)
+
+## ⚙️ CI/CD Workflow
+- On every push to `main`:
+  - GitHub Actions builds the Docker image
+  - Pushes it to GHCR:  
+    `ghcr.io/saeedtamboli01/devops-assignment:latest`
+
+## ☸️ Kubernetes Deployment
+- `deployment.yaml` defines the app deployment
+- `service.yaml` exposes the app via NodePort
+
+## 🔐 Private Registry Access
+- Kubernetes uses a secret (`ghcr-secret`) to pull the private image from GHCR
+
+## 🌐 Accessing the App
+After applying the YAML files:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Access the app at:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+             http://localhost:30212
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+✅ Status
+✔️ CI/CD working
 
-## Learn More
+✔️ Image pushed to GHCR
 
-To learn more about Next.js, take a look at the following resources:
+✔️ Kubernetes deployment successful
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+✔️ App accessible via NodePort
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📁 Files Included
+Dockerfile
 
-## Deploy on Vercel
+.github/workflows/docker.yml
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+deployment.yaml
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+service.yaml
+
+README.md             
